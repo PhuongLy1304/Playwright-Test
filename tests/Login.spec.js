@@ -20,6 +20,8 @@ test('TC-01-Login: OK',async({page})=>{
   await expect(actualResult).not.toBeInViewport();
   //Kiểm tra URL sau khi đăng nhập thành công
   await expect(page).toHaveURL('https://aptech-tester.web.app/home');
+  //chụp màn hình để lưu giữ lại
+  await page.screenshot({path: './tests/screen-shots/TC-01-Login: OK.png' ,clip: { x: 0, y: 0, height: 1080, width: 1920 } });
 
 });
 //testCase 2: Đăng nhập khi username sai
@@ -30,6 +32,13 @@ test('TC-02-Login: UserName Failed', async({page})=>{
   const actualResult = await page.locator('div.ant-form-item-explain-error');
   await expect(actualResult).not.toBeInViewport();
   await expect(page).toHaveURL('https://aptech-tester.web.app/login');
+  //kiểm tra theo ảnh chụp
+  //so sánh ảnh chụp với ảnh đã lưu trwuocs đó
+  const screenshot= await page.screenshot({ clip: { x: 0, y: 0, height: 1080, width: 1920 } });
+  //kiểm tra ảnh chụp có khớp với ảnh đã lưu trước đó không?
+  expect(screenshot).toMatchSnapshot({
+    name: './tests/screen-shots/TC-01-Login: OK.png',
+  });
   
   
 });
