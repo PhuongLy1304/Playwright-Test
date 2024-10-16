@@ -164,7 +164,7 @@ test('TC - Login - 12: Password =11', async ({ page }) => {
   await page.locator('button:Has-text("Đăng nhập")').click();
   const actualResult = await page.locator('div.ant-form-item-explain-error');
   await expect(actualResult).toHaveText("Độ dài mật khẩu phải nằm trong khoảng 6 đến 10 ký tự");
-})
+});
 
 
 
